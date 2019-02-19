@@ -2,8 +2,6 @@
 , iohk-overlay ? {}
 , iohk-module ? {}
 , haskell
-, hackage
-, stackage
 , ...
 }:
 let
@@ -22,8 +20,8 @@ let
   #  packages.cbors.patches = [ ./one.patch ];
   #  packages.cbors.flags.optimize-gmp = false;
   #
-  compiler = (plan-pkgs.overlay hackage).compiler or
-             (plan-pkgs.pkgs hackage).compiler;
+  compiler = (plan-pkgs.overlay {}).compiler or
+             (plan-pkgs.pkgs {}).compiler;
 
   pkgSet = haskell.mkCabalProjectPkgSet {
     inherit plan-pkgs;
