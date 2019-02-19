@@ -1,53 +1,56 @@
 let
-  fixedLib     = import ./lib.nix { };
-  fixedNixpkgs = fixedLib.nixpkgs;
+  localLib = import ./lib.nix;
 in
-  { supportedSystems ? [ "x86_64-linux" "x86_64-darwin" ]
-  , scrubJobs ? true
-  , fasterBuild ? false
-  , skipPackages ? []
-  , nixpkgsArgs ? {
-      config = { allowUnfree = false; inHydra = true; };
-      inherit fasterBuild;
-    }
-  }:
+localLib.nix-tools.release-nix {
+  package-set-path = ./.;
 
-with (import (fixedNixpkgs + "/pkgs/top-level/release-lib.nix") {
-  inherit supportedSystems scrubJobs nixpkgsArgs;
-  packageSet = import ./.;
-});
+  # packages from our stack.yaml or plan file (via nix/pkgs.nix) we
+  # are intereted in building on CI via nix-tools.
+  packages = [
+    "language-plutus-core"
+    "marlowe"
+    "plutus-core-interpreter"
+    "plutus-exe"
+    "plutus-api"
+    "plutus-use-cases"
+    "plutus-ir"
+    "plutus-playground-server"
+    "plutus-playground-lib"
+    "plutus-tutorial"
+  ];
 
-let
-  plutusPkgs = import ./. { };
-  pkgs = import fixedNixpkgs { };
-  haskellPackages = map (name: lib.nameValuePair name supportedSystems) fixedLib.plutusPkgList;
-  # don't need to build the docs on anything other than one platform
-  docs = map (name: lib.nameValuePair name [ "x86_64-linux" ]) (builtins.attrNames plutusPkgs.docs);
-  platforms = {
-    inherit haskellPackages;
-    inherit docs;
-  };
-  mapped = mapTestOn platforms;
-  makePlutusTestRuns = system:
-    let
-      pred = name: value: fixedLib.isPlutus name;
-      plutusPkgs = import ./. { inherit system; };
-      # for things which are split-check then take the test run, otherwise
-      # use the main derivation which will have the tests as part of it
-      f = name: value: if value ? testdata then value.testrun else value;
-    in pkgs.lib.mapAttrs f (lib.filterAttrs pred plutusPkgs.haskellPackages);
-in pkgs.lib.fix (jobsets:  mapped // {
-  inherit (plutusPkgs) tests docs plutus-playground meadow;
-  all-plutus-tests = builtins.listToAttrs (map (arch: { name = arch; value = makePlutusTestRuns arch; }) supportedSystems);
-  required = pkgs.lib.hydraJob (pkgs.releaseTools.aggregate {
-    name = "plutus-required-checks";
-    constituents =
-      let
-        allLinux = x: map (system: x.${system}) [ "x86_64-linux" ];
-        all = x: map (system: x.${system}) supportedSystems;
-      in
-    [
-      (builtins.concatLists (map lib.attrValues (all jobsets.all-plutus-tests)))
-    ] ++ (builtins.attrValues jobsets.tests) ++ (builtins.attrValues jobsets.docs) ++ [jobsets.plutus-playground.client];
-  });
-})
+  # The set of jobs we consider crutial for each CI run.
+  # if a single one of these fails, the build will be marked
+  # as failed.
+  #
+  # The names can be looked up on hydra when in doubt.
+  #
+  # custom jobs will follow their name as set forth in
+  # other-packages.
+  #
+  # nix-tools packages withh be prefixed with nix-tools and
+  # follow the following naming convention:
+  #
+  #   namespace                      optional cross compilation prefix                  build machine
+  #   .-------.                              .-----------------.                 .--------------------------.
+  #   nix-tools.{libs,exes,tests,benchmarks}.{x86_64-pc-mingw-,}.$pkg.$component.{x86_64-linux,x86_64-darwin}
+  #             '--------------------------'                     '-------------'
+  #                 component type                           cabal pkg and component*
+  #
+  # * note that for libs, $component is empty, as cabal only
+  # provides a single library for packages right now.
+  #
+  # Example:
+  #
+  #   libs.cardano-chain.x86_64-darwin -- will build the cardano-chain library on and for macOS
+  #   libs.cardano-chain.x86_64-linux -- will build the cardano-chain library on and for linux
+  #   libs.x86_64-pc-mingw32-cardano-chain.x86_64-linux -- will build the cardano-chain library on linux for windows.
+  #   tests.cs-ledger.ledger-delegation-test.x86_64-linux -- will build and run the ledger-delegation-test from the
+  #                                                          cs-ledger package on linux.
+  #
+  required-name = "required-checks";
+  required-targets = jobs: [
+    # windows cross compilation targets
+  ];
+
+}
