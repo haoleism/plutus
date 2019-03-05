@@ -56,6 +56,7 @@ import Network.HTTP.Affjax (AJAX)
 import Network.RemoteData (RemoteData(NotAsked, Loading, Failure, Success), _Success, isSuccess)
 import Playground.API (Evaluation(Evaluation), EvaluationResult(EvaluationResult), SimulatorWallet(SimulatorWallet), SourceCode(SourceCode), _CompilationResult, _FunctionSchema)
 import Playground.Server (SPParams_, getOauthStatus, patchGistsByGistId, postContract, postEvaluate, postGists)
+import Playground.Usecases (gitHead)
 import Prelude (type (~>), Unit, Void, bind, const, discard, flip, map, pure, show, unit, unless, void, when, ($), (&&), (+), (-), (<$>), (<*>), (<<<), (<>), (==), (>>=))
 import Servant.PureScript.Settings (SPSettings_)
 import StaticData (bufferLocalStorageKey)
@@ -454,7 +455,7 @@ mainHeader =
     ]
   where
     links = [ Tuple "Getting Started" "https://testnet.iohkdev.io/plutus/get-started/writing-contracts-in-plutus/"
-            , Tuple "Tutorial" "https://github.com/input-output-hk/plutus/blob/master/plutus-tutorial/tutorial/Tutorial/02-wallet-api.md"
+            , Tuple "Tutorial" ("https://github.com/input-output-hk/plutus/blob/" <> gitHead <> "/plutus-tutorial/tutorial/Tutorial/02-wallet-api.md")
             , Tuple "API" "https://input-output-hk.github.io/plutus/"
             , Tuple "Privacy" "https://static.iohk.io/docs/data-protection/iohk-data-protection-gdpr-policy.pdf"
             ]

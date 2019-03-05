@@ -55,6 +55,7 @@ import Language.Haskell.Interpreter (CompilationError(CompilationError, RawError
 import LocalStorage (LOCALSTORAGE)
 import LocalStorage as LocalStorage
 import Meadow (postContractHaskell)
+import Meadow.Contracts (gitHead)
 import Network.HTTP.Affjax (AJAX)
 import Network.RemoteData (RemoteData(NotAsked, Loading, Failure, Success), _Success, isSuccess)
 import API (SourceCode(SourceCode), _RunResult)
@@ -254,7 +255,7 @@ mainHeader =
     ]
   where
     links = [ Tuple "Getting Started" "https://testnet.iohkdev.io/plutus/get-started/writing-contracts-in-plutus/"
-            , Tuple "Tutorial" "https://github.com/input-output-hk/plutus/blob/master/plutus-tutorial/tutorial/Tutorial/02-wallet-api.md"
+            , Tuple "Tutorial" ("https://github.com/input-output-hk/plutus/blob/" <> gitHead <> "/plutus-tutorial/tutorial/Tutorial/02-wallet-api.md")
             , Tuple "API" "https://input-output-hk.github.io/plutus/"
             , Tuple "Privacy" "https://static.iohk.io/docs/data-protection/iohk-data-protection-gdpr-policy.pdf"
             ]

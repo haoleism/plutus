@@ -9,7 +9,6 @@
 {-# LANGUAGE RankNTypes                 #-}
 {-# LANGUAGE RecordWildCards            #-}
 {-# LANGUAGE ScopedTypeVariables        #-}
-{-# LANGUAGE TemplateHaskell            #-}
 {-# LANGUAGE TypeApplications           #-}
 {-# LANGUAGE TypeOperators              #-}
 {-# OPTIONS_GHC   -Wno-orphans #-}
@@ -27,7 +26,7 @@ import           Control.Monad.Reader                 (ReaderT, runReaderT)
 import           Data.Default.Class                   (def)
 import           Data.Proxy                           (Proxy (Proxy))
 import           Data.Text                            (Text)
-import           Development.GitRev                   (gitHash)
+import           Git                                  (gitHead)
 import           Network.HTTP.Types                   (Method)
 import           Network.Wai                          (Application)
 import           Network.Wai.Handler.Warp             (Settings, runSettings)
@@ -43,6 +42,7 @@ import           Servant.Foreign                      (GenerateList, NoContent, 
 import           Servant.Server                       (Server)
 import           System.Metrics                       (Store, newStore)
 import           System.Remote.Monitoring.Statsd      (defaultStatsdOptions, forkStatsd)
+import qualified Data.Text                            as Text
 import           Types                                (Config (Config, _authConfig))
 
 instance GenerateList NoContent (Method -> Req NoContent) where
@@ -71,7 +71,7 @@ server handlers _staticDir githubEndpoints Config {..} =
   serveDirectoryFileServer _staticDir
 
 version :: Applicative m => m Text
-version = pure $(gitHash)
+version = pure . Text.pack $ gitHead
 
 app ::
      Server PA.API -> FilePath -> Auth.GithubEndpoints -> Config -> Application
