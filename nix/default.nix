@@ -15,6 +15,7 @@ let
     "math-functions"
     "hedgehog"
     "generics-sop"
+    "language-plutus-core"
   ];
 
   # Build the packageset with module support.
