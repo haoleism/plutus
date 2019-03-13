@@ -10,8 +10,7 @@ localLib.nix-tools.release-nix {
     "language-plutus-core"
     "marlowe"
     "plutus-core-interpreter"
-# there is no plutus-exe lib.
-#    "plutus-exe"
+    "plutus-exe"
     "plutus-api"
     "plutus-use-cases"
     "plutus-ir"

@@ -11,7 +11,7 @@ let
   # packages which will require TH and thus
   # will need -fexternal-interpreter treatment
   # when cross compiling.
-  th-packages = [];
+  th-packages = [ "math-functions" ];
 
   # Build the packageset with module support.
   # We can essentially override anything in the modules
@@ -47,6 +47,7 @@ let
                      inherit th-packages; })
       ({ config, ...}: {
           packages.hsc2hs.components.exes.hsc2hs.doExactConfig = true;
+          packages.bytestring-builder.doHaddock = false;
       })
     ];
   };
