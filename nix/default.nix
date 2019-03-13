@@ -11,7 +11,11 @@ let
   # packages which will require TH and thus
   # will need -fexternal-interpreter treatment
   # when cross compiling.
-  th-packages = [ "math-functions" ];
+  th-packages = [
+    "math-functions"
+    "hedgehog"
+    "generics-sop"
+  ];
 
   # Build the packageset with module support.
   # We can essentially override anything in the modules
