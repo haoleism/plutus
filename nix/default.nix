@@ -39,6 +39,9 @@ let
       # explicity here.
       (iohk-module { nixpkgs = pkgs;
                      inherit th-packages; })
+      ({ config, ...}: {
+          packages.hsc2hs.components.exes.hsc2hs.doExactConfig = true;
+      })
     ];
   };
 
