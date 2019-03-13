@@ -30,6 +30,12 @@ let
     # we restrict our package set to the ones provided in stack.yaml.
     pkg-def-overlays = [
       iohk-overlay.${compiler.nix-name}
+      # this one is missing from the plan.json; we can't yet force
+      # os/arch with cabal to produce plans that are valid for multiple
+      # os/archs. Luckily mac/linux are close enough to have mostly the
+      # same build plan for windows however we need some hand holding for
+      # now.
+      (hackage: { mintty = hackage.mintty."0.1.2".revisions.default; })
     ];
     modules = [
       # the iohk-module will supply us with the necessary
