@@ -61,7 +61,8 @@ let
           packages.bytestring-builder.doHaddock = false;
           packages.unix-time.patches = [ ./patches/unix-time/lowercase-import-windows.patch ];
           packages.unix-time.components.library.libs = if pkgs.stdenv.hostPlatform.isWindows then [ pkgs.windows.mingw_w64_pthreads ] else [];
-          packages.wallet-api.configureFlags = [ "--ghc-option=-fexternal-interpreter" ];
+          packages.wallet-api.configureFlags = [ "--ghc-option=-j1" "--ghc-option=-v3" ];
+          packages.ghc.patches = [ ./patches/ghc/add-rts.patch ];
       })
     ];
   };
