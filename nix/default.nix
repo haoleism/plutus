@@ -23,6 +23,7 @@ let
     "swagger2"
     "plutus-tx"
     "wai-app-static"
+    "servant-foreign"
   ];
 
   # Build the packageset with module support.
