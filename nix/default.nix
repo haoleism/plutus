@@ -31,7 +31,7 @@ let
   compiler = (plan-pkgs.overlay {}).compiler or
              (plan-pkgs.pkgs {}).compiler;
 
-  pkgSet = haskell.mkCabalProjectPkgSet {
+  pkgSet = haskell.mkStackPkgSet {
     inherit plan-pkgs;
     # The overlay allows extension or restriction of the set of
     # packages we are interested in. By using the stack-pkgs.overlay
