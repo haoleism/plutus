@@ -62,4 +62,4 @@
           };
         };
       };
-    } // rec { src = (pkgs.lib).mkDefault .././../plutus-tx; }
+    } // rec { src = (pkgs.lib).mkDefault .././plutus-tx; }

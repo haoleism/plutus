@@ -96,4 +96,4 @@
           };
         };
       };
-    } // rec { src = (pkgs.lib).mkDefault .././../language-plutus-core; }
+    } // rec { src = (pkgs.lib).mkDefault .././language-plutus-core; }

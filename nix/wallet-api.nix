@@ -68,4 +68,4 @@
           };
         };
       };
-    } // rec { src = (pkgs.lib).mkDefault .././../wallet-api; }
+    } // rec { src = (pkgs.lib).mkDefault .././wallet-api; }

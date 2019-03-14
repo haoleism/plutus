@@ -31,4 +31,4 @@
           };
         };
       };
-    } // rec { src = (pkgs.lib).mkDefault .././../plutus-exe; }
+    } // rec { src = (pkgs.lib).mkDefault .././plutus-exe; }

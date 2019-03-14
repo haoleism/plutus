@@ -46,4 +46,4 @@
           };
         };
       };
-    } // rec { src = (pkgs.lib).mkDefault .././../plutus-tutorial; }
+    } // rec { src = (pkgs.lib).mkDefault .././plutus-tutorial; }

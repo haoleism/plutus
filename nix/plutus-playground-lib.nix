@@ -53,4 +53,4 @@
           };
         };
       };
-    } // rec { src = (pkgs.lib).mkDefault .././../plutus-playground-lib; }
+    } // rec { src = (pkgs.lib).mkDefault .././plutus-playground-lib; }

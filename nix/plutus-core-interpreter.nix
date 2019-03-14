@@ -39,4 +39,4 @@
           };
         };
       };
-    } // rec { src = (pkgs.lib).mkDefault .././../plutus-core-interpreter; }
+    } // rec { src = (pkgs.lib).mkDefault .././plutus-core-interpreter; }

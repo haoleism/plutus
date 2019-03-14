@@ -104,4 +104,4 @@
           };
         };
       };
-    } // rec { src = (pkgs.lib).mkDefault .././../meadow; }
+    } // rec { src = (pkgs.lib).mkDefault .././meadow; }

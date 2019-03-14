@@ -54,4 +54,4 @@
           };
         };
       };
-    } // rec { src = (pkgs.lib).mkDefault .././../plutus-ir; }
+    } // rec { src = (pkgs.lib).mkDefault .././plutus-ir; }

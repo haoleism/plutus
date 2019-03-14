@@ -44,4 +44,4 @@
           };
         };
       };
-    } // rec { src = (pkgs.lib).mkDefault .././../marlowe; }
+    } // rec { src = (pkgs.lib).mkDefault .././marlowe; }

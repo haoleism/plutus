@@ -45,4 +45,4 @@
           };
         };
       };
-    } // rec { src = (pkgs.lib).mkDefault .././../plutus-use-cases; }
+    } // rec { src = (pkgs.lib).mkDefault .././plutus-use-cases; }
