@@ -24,6 +24,7 @@ let
     "plutus-tx"
     "wai-app-static"
     "servant-foreign"
+    "purescript-bridge"
   ];
 
   # Build the packageset with module support.
