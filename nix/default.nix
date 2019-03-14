@@ -32,7 +32,7 @@ let
              (plan-pkgs.pkgs {}).compiler;
 
   pkgSet = haskell.mkStackPkgSet {
-    inherit plan-pkgs;
+    stack-pkgs = plan-pkgs;
     # The overlay allows extension or restriction of the set of
     # packages we are interested in. By using the stack-pkgs.overlay
     # we restrict our package set to the ones provided in stack.yaml.
