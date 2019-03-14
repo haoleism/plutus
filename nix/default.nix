@@ -19,6 +19,7 @@ let
     "plutus-core-interpreter"
     "plutus-ir"
     "statistics"
+    "th-lift-instances"
   ];
 
   # Build the packageset with module support.
