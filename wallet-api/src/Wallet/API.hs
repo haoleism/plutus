@@ -1,3 +1,4 @@
+{-# LANGUAGE DeriveAnyClass     #-}
 {-# LANGUAGE ConstraintKinds    #-}
 {-# LANGUAGE DeriveGeneric      #-}
 {-# LANGUAGE DerivingStrategies #-}
@@ -125,7 +126,8 @@ data EventTriggerF f =
     | TNever
     | TSlotRange !SlotRange
     | TFundsAtAddress !Address !(Interval Value)
-    deriving (Eq, Ord, Show, Functor, Foldable, Traversable, Generic)
+    deriving stock (Eq, Ord, Show, Functor, Foldable, Traversable, Generic)
+    deriving anyclass (FromJSON, ToJSON)
 
 $(deriveEq1 ''EventTriggerF)
 $(deriveOrd1 ''EventTriggerF)
@@ -221,7 +223,8 @@ instance FromJSON WalletAPIError
 instance ToJSON WalletAPIError
 
 newtype WalletLog = WalletLog { getWalletLog :: [Text] }
-    deriving (Eq, Ord, Show, Generic, Semigroup, Monoid)
+    deriving stock (Eq, Ord, Show, Generic)
+    deriving newtype (Semigroup, Monoid)
 
 instance FromJSON WalletLog
 instance ToJSON WalletLog
