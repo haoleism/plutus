@@ -16,6 +16,8 @@ let
     "hedgehog"
     "generics-sop"
     "language-plutus-core"
+    "plutus-core-interpreter"
+    "plutus-ir"
   ];
 
   # Build the packageset with module support.
