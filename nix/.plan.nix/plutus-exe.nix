@@ -4,8 +4,8 @@
     package = {
       specVersion = "2.0";
       identifier = { name = "plutus-exe"; version = "0.1.0.0"; };
-      license = "BSD-3-Clause";
-      copyright = "Copyright: (c) 2018 Input Output";
+      license = "Apache-2.0";
+      copyright = "";
       maintainer = "michael.peyton-jones@iohk.io";
       author = "Michael Peyton jones";
       homepage = "";

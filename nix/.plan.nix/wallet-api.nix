@@ -4,8 +4,8 @@
     package = {
       specVersion = "2.2";
       identifier = { name = "wallet-api"; version = "0.1.0.0"; };
-      license = "BSD-3-Clause";
-      copyright = "Copyright: (c) 2018 Input Output";
+      license = "Apache-2.0";
+      copyright = "";
       maintainer = "michael.peyton-jones@iohk.io";
       author = "Michael Peyton Jones, Jann Mueller";
       homepage = "";

@@ -2,10 +2,10 @@
   {
     flags = { development = false; };
     package = {
-      specVersion = "1.18";
+      specVersion = "2.0";
       identifier = { name = "plutus-ir"; version = "0.1.0.0"; };
-      license = "BSD-3-Clause";
-      copyright = "Copyright: (c) 2018 Input Output";
+      license = "Apache-2.0";
+      copyright = "";
       maintainer = "michael.peyton-jones@iohk.io";
       author = "Michael Peyton Jones";
       homepage = "";
@@ -39,8 +39,9 @@
             (hsPkgs.base)
             (hsPkgs.hedgehog)
             (hsPkgs.plutus-ir)
+            (hsPkgs.filepath)
+            (hsPkgs.text)
             (hsPkgs.language-plutus-core)
-            (hsPkgs.megaparsec)
             (hsPkgs.mtl)
             (hsPkgs.mmorph)
             (hsPkgs.prettyprinter)
@@ -48,6 +49,7 @@
             (hsPkgs.tasty)
             (hsPkgs.tasty-hedgehog)
             (hsPkgs.text)
+            (hsPkgs.megaparsec)
             ];
           };
         };

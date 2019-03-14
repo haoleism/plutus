@@ -4,8 +4,8 @@
     package = {
       specVersion = "2.0";
       identifier = { name = "plutus-core-interpreter"; version = "0.1.0.0"; };
-      license = "BSD-3-Clause";
-      copyright = "Copyright: (c) 2018 Input Output";
+      license = "Apache-2.0";
+      copyright = "";
       maintainer = "Plutus team";
       author = "Plutus team";
       homepage = "";
@@ -20,7 +20,6 @@
           (hsPkgs.base)
           (hsPkgs.containers)
           (hsPkgs.mtl)
-          (hsPkgs.mmorph)
           (hsPkgs.lens)
           (hsPkgs.language-plutus-core)
           ];

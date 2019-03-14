@@ -4,8 +4,8 @@
     package = {
       specVersion = "2.0";
       identifier = { name = "language-plutus-core"; version = "0.1.0.0"; };
-      license = "BSD-3-Clause";
-      copyright = "Copyright: (c) 2018 Input Output";
+      license = "Apache-2.0";
+      copyright = "";
       maintainer = "vanessa.mchale@iohk.io";
       author = "Vanessa McHale";
       homepage = "";
@@ -44,6 +44,8 @@
           (hsPkgs.filepath)
           (hsPkgs.tasty)
           (hsPkgs.tasty-golden)
+          (hsPkgs.cryptonite)
+          (hsPkgs.cardano-crypto)
           ];
         build-tools = [
           ((hsPkgs.buildPackages).alex)

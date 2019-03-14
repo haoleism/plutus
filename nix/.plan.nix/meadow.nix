@@ -2,16 +2,16 @@
   {
     flags = { development = false; };
     package = {
-      specVersion = "2.0";
-      identifier = { name = "plutus-playground-server"; version = "0.1.0.0"; };
+      specVersion = "1.10";
+      identifier = { name = "meadow"; version = "0.1.0.0"; };
       license = "Apache-2.0";
       copyright = "";
-      maintainer = "kris.jenkins@tweag.io";
-      author = "Kris Jenkins";
-      homepage = "https://github.com/iohk/plutus#readme";
+      maintainer = "";
+      author = "Pablo Lamela";
+      homepage = "";
       url = "";
       synopsis = "";
-      description = "Please see the README on GitHub at <https://github.com/input-output-hk/plutus#readme>";
+      description = "";
       buildType = "Simple";
       };
     components = {
@@ -21,47 +21,47 @@
           (hsPkgs.aeson-casing)
           (hsPkgs.base)
           (hsPkgs.bytestring)
-          (hsPkgs.containers)
+          (hsPkgs.bytestring)
           (hsPkgs.cookie)
+          (hsPkgs.containers)
           (hsPkgs.directory)
           (hsPkgs.exceptions)
           (hsPkgs.file-embed)
-          (hsPkgs.http-conduit)
+          (hsPkgs.filepath)
           (hsPkgs.http-client-tls)
           (hsPkgs.http-client)
+          (hsPkgs.http-conduit)
           (hsPkgs.http-types)
           (hsPkgs.interpreter)
           (hsPkgs.jwt)
           (hsPkgs.lens)
+          (hsPkgs.marlowe)
+          (hsPkgs.marlowe)
           (hsPkgs.monad-logger)
           (hsPkgs.mtl)
-          (hsPkgs.transformers)
           (hsPkgs.newtype-generics)
-          (hsPkgs.plutus-playground-lib)
           (hsPkgs.process)
-          (hsPkgs.regex-compat)
           (hsPkgs.servant)
-          (hsPkgs.servant-purescript)
           (hsPkgs.servant-client)
           (hsPkgs.servant-client-core)
           (hsPkgs.servant-ekg)
+          (hsPkgs.servant-purescript)
           (hsPkgs.servant-server)
-          (hsPkgs.swagger2)
           (hsPkgs.temporary)
           (hsPkgs.text)
           (hsPkgs.time)
-          (hsPkgs.wallet-api)
+          (hsPkgs.transformers)
           ];
         };
       exes = {
-        "plutus-playground-server" = {
+        "meadow-exe" = {
           depends = [
             (hsPkgs.aeson)
             (hsPkgs.base)
             (hsPkgs.bytestring)
             (hsPkgs.containers)
             (hsPkgs.data-default-class)
-            (hsPkgs.ekg)
+            (hsPkgs.directory)
             (hsPkgs.ekg-core)
             (hsPkgs.ekg-statsd)
             (hsPkgs.filepath)
@@ -69,47 +69,39 @@
             (hsPkgs.http-types)
             (hsPkgs.interpreter)
             (hsPkgs.lens)
+            (hsPkgs.meadow)
             (hsPkgs.monad-logger)
             (hsPkgs.mtl)
-            (hsPkgs.optparse-applicative)
-            (hsPkgs.plutus-playground-lib)
-            (hsPkgs.plutus-playground-server)
             (hsPkgs.purescript-bridge)
-            (hsPkgs.servant)
+            (hsPkgs.optparse-applicative)
             (hsPkgs.servant-ekg)
             (hsPkgs.servant-foreign)
-            (hsPkgs.servant-purescript)
             (hsPkgs.servant-server)
+            (hsPkgs.servant-purescript)
             (hsPkgs.text)
-            (hsPkgs.transformers)
             (hsPkgs.wai)
             (hsPkgs.wai-cors)
             (hsPkgs.wai-extra)
-            (hsPkgs.wallet-api)
             (hsPkgs.warp)
             (hsPkgs.yaml)
             ];
           };
         };
       tests = {
-        "plutus-playground-server-test" = {
+        "meadow-test" = {
           depends = [
-            (hsPkgs.aeson)
             (hsPkgs.base)
             (hsPkgs.bytestring)
-            (hsPkgs.hspec)
-            (hsPkgs.insert-ordered-containers)
-            (hsPkgs.interpreter)
-            (hsPkgs.mtl)
-            (hsPkgs.plutus-playground-lib)
-            (hsPkgs.plutus-playground-server)
-            (hsPkgs.swagger2)
+            (hsPkgs.meadow)
             (hsPkgs.text)
-            (hsPkgs.transformers)
-            (hsPkgs.wallet-api)
+            (hsPkgs.mtl)
+            (hsPkgs.hspec)
+            (hsPkgs.hspec-wai)
+            (hsPkgs.hspec-wai-json)
+            (hsPkgs.raw-strings-qq)
+            (hsPkgs.aeson)
             ];
-          build-tools = [ ((hsPkgs.buildPackages).hspec-discover) ];
           };
         };
       };
-    } // rec { src = (pkgs.lib).mkDefault .././../plutus-playground-server; }
+    } // rec { src = (pkgs.lib).mkDefault .././../meadow; }
