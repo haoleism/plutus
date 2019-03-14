@@ -57,6 +57,7 @@ let
       ({ config, ...}: {
           packages.hsc2hs.components.exes.hsc2hs.doExactConfig = true;
           packages.bytestring-builder.doHaddock = false;
+          packages.unix-time.components.lirbary.libs = if pkgs.stdenv.hostPlatform.isWindows then [ pkgs.windows.mingw_w64_pthreads ] else [];
       })
     ];
   };
