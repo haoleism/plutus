@@ -22,6 +22,7 @@ let
     "th-lift-instances"
     "swagger2"
     "plutus-tx"
+    "wai-app-static"
   ];
 
   # Build the packageset with module support.
