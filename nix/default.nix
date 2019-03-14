@@ -18,6 +18,7 @@ let
     "language-plutus-core"
     "plutus-core-interpreter"
     "plutus-ir"
+    "statistics"
   ];
 
   # Build the packageset with module support.
