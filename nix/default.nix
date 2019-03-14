@@ -20,6 +20,8 @@ let
     "plutus-ir"
     "statistics"
     "th-lift-instances"
+    "swagger2"
+    "plutus-tx"
   ];
 
   # Build the packageset with module support.
