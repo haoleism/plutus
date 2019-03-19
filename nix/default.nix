@@ -1,5 +1,5 @@
 { pkgs ? import <nixpkgs> {}
-, iohk-overlay ? {}
+, iohk-extras ? {}
 , iohk-module ? {}
 , haskell
 , ...
@@ -15,16 +15,16 @@ let
   #  packages.cbors.patches = [ ./one.patch ];
   #  packages.cbors.flags.optimize-gmp = false;
   #
-  compiler = (plan-pkgs.overlay {}).compiler or
+  compiler = (plan-pkgs.extras {}).compiler or
              (plan-pkgs.pkgs {}).compiler;
 
   pkgSet = haskell.mkCabalProjectPkgSet {
     inherit plan-pkgs;
-    # The overlay allows extension or restriction of the set of
-    # packages we are interested in. By using the stack-pkgs.overlay
+    # The extras allow extension or restriction of the set of
+    # packages we are interested in. By using the stack-pkgs.extras
     # we restrict our package set to the ones provided in stack.yaml.
     pkg-def-extras = [
-      iohk-overlay.${compiler.nix-name}
+      iohk-extras.${compiler.nix-name}
       # this one is missing from the plan.json; we can't yet force
       # os/arch with cabal to produce plans that are valid for multiple
       # os/archs. Luckily mac/linux are close enough to have mostly the
