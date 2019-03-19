@@ -494,7 +494,7 @@
           };
         };
       };
-  overlay = hackage:
+  extras = hackage:
     {
       packages = {
         plutus-use-cases = ./.plan.nix/plutus-use-cases.nix;
