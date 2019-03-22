@@ -40954,7 +40954,7 @@ wai
 warp
 ];
 doHaddock = false;
-license = stdenv.lib.licenses.bsd3;
+license = stdenv.lib.licenses.asl20;
 
 }) {};
 "intervals" = callPackage
@@ -56605,6 +56605,8 @@ license = stdenv.lib.licenses.mit;
   mkDerivation
 , aeson
 , base
+, containers
+, lens
 , plutus-use-cases
 , servant
 , servant-server
@@ -56627,11 +56629,15 @@ text
 wallet-api
 ];
 executableHaskellDepends = [
+aeson
 base
+containers
+lens
 plutus-use-cases
 servant
 servant-server
 text
+wallet-api
 warp
 ];
 doHaddock = false;
@@ -56845,6 +56851,7 @@ license = stdenv.lib.licenses.asl20;
 "plutus-playground-server" = callPackage
 ({
   mkDerivation
+, adjunctions
 , aeson
 , aeson-casing
 , base
@@ -56939,6 +56946,7 @@ transformers
 wallet-api
 ];
 executableHaskellDepends = [
+adjunctions
 aeson
 base
 bytestring
