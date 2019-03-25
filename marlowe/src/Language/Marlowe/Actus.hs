@@ -80,3 +80,28 @@ zeroCouponBondGuaranteed issuer investor guarantor notional discount startDate m
             Null
         )
         Null
+
+genericBond :: PubKey -> PubKey -> Int -> Int -> Timeout -> Timeout -> Timeout -> (Contract -> Contract) -> Contract -> Contract
+genericBond issuer investor notional discount startDate maturityDate gracePeriod guarantorCommit guarantorPay =
+    -- prepare money for zero-coupon bond, before it could be used
+    CommitCash (IdentCC 1) investor (Value (notional - discount)) startDate maturityDate
+        -- guarantor commits a 'guarantee' before startDate
+        guarantorCommit
+            (When FalseObs startDate Null
+                (Pay (IdentPay 1) investor issuer (Committed (IdentCC 1)) maturityDate
+                    (CommitCash (IdentCC 3) issuer (Value notional) maturityDate (maturityDate + gracePeriod)
+                        -- if the issuer commits the notional before maturity date pay from it, redeem the 'guarantee'
+                        (Pay (IdentPay 2) issuer investor (Committed (IdentCC 3))
+                            (maturityDate + gracePeriod) (RedeemCC (IdentCC 2) Null))
+                        -- pay from the guarantor otherwise
+                        guarantorPay
+                    )
+                )
+            )
+        )
+        Null
+
+trustedZeroCouponBond :: PubKey -> PubKey -> Int -> Int -> Timeout -> Timeout -> Timeout -> Contract
+trustedZeroCouponBond issuer investor notional discount startDate maturityDate gracePeriod = let
+    guarantorCommit cont = cont
+    genericBond issuer investor notional discount startDate maturityDate gracePeriod guarantorCommit Null
