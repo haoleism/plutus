@@ -1,5 +1,5 @@
 import 'font-awesome/scss/font-awesome.scss';
-import './static/main.scss';
+import '../web-common/static/main.scss';
 
 import 'ace-builds/src-min-noconflict/ace.js';
 import 'ace-builds/src-min-noconflict/mode-haskell.js';
